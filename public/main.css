@@ -1,0 +1,20 @@
+html,
+body,
+button {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #222;
+    color: #fff;
+}
+
+/* ---------- Layout grid ---------- */
+.page-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto ;
+    height: 100vh;
+}
+

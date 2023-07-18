@@ -1,0 +1,22 @@
+/* User buttons */
+.user-profile .button-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+/* ---------- Header Link styles ---------- */
+.logout-button {
+    background-color: grey;
+    color: #fff;
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+}
+
+.logout-button:hover {
+    background-color: #ff6600;
+}
