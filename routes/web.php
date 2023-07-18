@@ -16,3 +16,6 @@ use App\Http\Controllers\Home;
 
 Route::get('/', [Home::class, "welcomepage"]);
 
+Route::get('/register', [Home::class, "registrationpage"]);
+
+

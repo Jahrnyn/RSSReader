@@ -3,3 +3,44 @@
     grid-template-columns: 1fr 2fr;
     height: 85vh;
 }
+
+.wellcome-text-container {
+    text-align: center;
+    color: #fff;
+}
+
+.wellcome-text-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.wellcome-text-container p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.wellcome-text-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.wellcome-text-container ul li {
+    margin-bottom: 5px;
+}
+
+.wellcome-text-container a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #FF3366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.wellcome-text-container a:hover {
+    background-color: #ff7d9d;
+}
+  
