@@ -7,14 +7,72 @@ button {
 }
 
 body {
-    background-color: #222;
+    background-color: 	#505050;
     color: #fff;
 }
 
-/* ---------- Layout grid ---------- */
+
+/* Links */
+a {
+    color: #FF3366;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff7d9d;
+}
+
+/* Buttons */
+.button-link {
+    background-color: #FF3366;
+    color: #fff;
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+}
+
+.button-link:hover {
+    background-color: #ff7d9d;
+}
+
+
+/* Layout grid */
 .page-container {
     display: grid;
     grid-template-rows: auto 1fr auto ;
     height: 100vh;
+}
+/* General Content Container styles */
+.content-container {
+    background-color: #333;
+    padding: 20px;
+    margin: 20px 10px;
+    border-radius: 10px;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+
+.center-container h2 {
+    text-align: center;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    box-shadow:
+        0 2px 2px rgba(0, 0, 0, 0.1),
+        0 4px 4px rgba(0, 0, 0, 0.1),
+        0 8px 8px rgba(0, 0, 0, 0.1),
+        0 16px 16px rgba(0, 0, 0, 0.1),
+        0 32px 32px rgba(0, 0, 0, 0.1),
+        0 64px 64px rgba(0, 0, 0, 0.1);
+}
+
+.center-container>article {
+    margin-bottom: 40px;
 }
 

@@ -2,11 +2,10 @@
     <header class="header">
         <div class="logo">
             <a href="/" >
-                <img src="" alt="Home">
+                <img src="rss-logo-icon-transp.png" alt="Home">
                 <h1>RSS Reader</h1>
             </a> 
         </div>
-
     @auth
             {{-- Logged in Header --}}
             <div class="user-profile">
