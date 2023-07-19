@@ -10,7 +10,7 @@
         </div>
         {{-- Slideshow --}}
         <div class="content-container" id="demonstration">
-            <p>Ide kerül majd egy kép arról, hogyan néz ki az oldal bejelentkezve feedekkel.</p>
+            <p>Here will be a picture of how the page looks when logged in with feeds.</p>
         </div>
     </div>
 </x-layout>
