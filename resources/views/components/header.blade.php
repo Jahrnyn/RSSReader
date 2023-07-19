@@ -10,7 +10,7 @@
             {{-- Logged in Header --}}
             <div class="user-profile">
                 <div id="username">
-                    <h2>Welcome {{auth()->user()->name}}</h2>
+                    <h3>Welcome {{auth()->user()->name}}</h3>
                 </div>
                 <div class="button-container">
                     <form action="/logout" method="POST" class="logout-form">

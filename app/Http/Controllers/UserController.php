@@ -48,7 +48,8 @@ class UserController extends Controller
 
         $incomingFields['password'] = bcrypt($incomingFields['password']);
 
-        User::create($incomingFields);
-        return redirect('/')->with('Hello');
+        $user = User::create($incomingFields);
+        auth()->login($user);// auto log in 
+        return redirect('/')->with('success', 'Welcome to RSS Reader site');
     }
 }

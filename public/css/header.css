@@ -109,3 +109,7 @@
 .logout-button:hover {
     background-color: #FF3366;
 }
+
+#username h3 {
+    margin: 0;
+}
