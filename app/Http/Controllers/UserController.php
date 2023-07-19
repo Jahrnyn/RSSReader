@@ -20,7 +20,7 @@ class UserController extends Controller
     // logout
     public function logout() {
         auth()->logout();
-        return redirect('/')->with('success', 'You are succesfully logged out');
+        return redirect('/')->with('success', 'You are successfully logged out');
     }
 
     // login
@@ -32,9 +32,9 @@ class UserController extends Controller
 
         if (auth()->attempt(['name' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
-            return 'Congrats';
+            return redirect('/')->with('success', 'You are successfully logged in');
         } else {
-            return 'Sorry';
+            return redirect('/')->with('failure', 'Invalid username or password');
         }
     }
     
@@ -49,6 +49,6 @@ class UserController extends Controller
         $incomingFields['password'] = bcrypt($incomingFields['password']);
 
         User::create($incomingFields);
-        return 'Hello';
+        return redirect('/')->with('Hello');
     }
 }

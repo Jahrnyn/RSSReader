@@ -10,12 +10,12 @@
             {{-- Logged in Header --}}
             <div class="user-profile">
                 <div id="username">
-                Welcome {{auth()->user()->username}}
+                    <h2>Welcome {{auth()->user()->name}}</h2>
                 </div>
                 <div class="button-container">
                     <form action="/logout" method="POST" class="logout-form">
                     @csrf
-                    <button type="submit" class="logout-button">Log out</button>
+                    <button type="submit" class="logout-button">Sign Out</button>
                     </form>
                 </div>
             </div>

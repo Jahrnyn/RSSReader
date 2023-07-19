@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/main.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/toasts.css">
+  <link rel="stylesheet" href="css/toast.css">
   @yield('styles') {{-- placeholder to another stylesheets --}}
 </head>
 
