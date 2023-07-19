@@ -9,10 +9,14 @@ class RssController extends Controller
 {
     // create subscription
     public function createSubscription(Request $request){
-        $incomingField = $request->validate([
+        $request->validate([
             'url' => ['required', Rule::unique('rss_subscriptions', 'url')]
         ]);
 
+        $subscription = new RssSubscription();
+        $subscription->user_id = auth()->id();
+        $subscription->url = $request->url;
+        $subscription->save();
 
         return redirect('/')->with('success', 'RSS Subscription added');
     }

@@ -25,5 +25,5 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 // RssController
-Route::post('/rsssubscription', [RssController::class, 'createSubscription']);
+Route::middleware('auth')->post('/rsssubscription', [RssController::class, 'createSubscription']);
 
