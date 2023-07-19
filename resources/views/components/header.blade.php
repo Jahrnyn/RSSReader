@@ -9,8 +9,9 @@
     @auth
             {{-- Logged in Header --}}
             <div class="user-profile">
-                <a href="/profile" class="username"><strong>{{auth()->user()->username}}</strong></a>
-                <span class="profile-picture"></span>
+                <div id="username">
+                Welcome {{auth()->user()->username}}
+                </div>
                 <div class="button-container">
                     <form action="/logout" method="POST" class="logout-form">
                     @csrf
@@ -19,17 +20,14 @@
                 </div>
             </div>
         </header>
-        </div>
-
-        {{-- Countdown --}}
-        @include('components/countdown')
+        </div>   
 
     @else
         {{-- Logged out Header --}}
         <div class="login-form">
             <form action="/login" method="POST">
             @csrf
-                <input type="email" name="loginemail" placeholder="Email Address">
+                <input type="text" name="loginusername" placeholder="Username">
                 <input type="password" name="loginpassword" placeholder="Password">
                 <button class="button-link" type="submit">Login</button>
             </form>

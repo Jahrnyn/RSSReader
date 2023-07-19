@@ -8,11 +8,11 @@
         <div class="content-container" id="registration-container">
             <div id="registration-form-container">
                 <h2>Registration</h2>
-                    <form action="register" method="POST" id="registration-form">
+                    <form action="/registration" method="POST" id="registration-form">
                     @csrf 
                     <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input value="{{old('username')}}" id="username" name="username" required>
+                        <label for="name">Username:</label>
+                        <input value="{{old('username')}}" id="name" name="name" required>
                         @error('username')
                         <p>{{$message}}</p>
                         @enderror

@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,11 @@ use App\Http\Controllers\Home;
 |
 */
 
-Route::get('/', [Home::class, "welcomepage"]);
+Route::get('/', [UserController::class, "showCorrectHomePage"]);
 
 Route::get('/register', [Home::class, "registrationpage"]);
+Route::post('/registration', [UserController::class, 'registration']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout']);
 
 
