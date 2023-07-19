@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Home;
+use App\Http\Controllers\RssController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -15,11 +16,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [UserController::class, "showCorrectHomePage"]);
+Route::get('/', [UserController::class, 'showCorrectHomePage']);
 
-Route::get('/register', [Home::class, "registrationpage"]);
+// UserController
+Route::get('/register', [Home::class, 'registrationpage']);
 Route::post('/registration', [UserController::class, 'registration']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
+// RssController
+Route::post('/rsssubscription', [RssController::class, 'createSubscription']);
 
