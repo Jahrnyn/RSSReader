@@ -21,6 +21,7 @@
                 </form>
             </div>
             <div class="user-feeds-container">
+                <a href="{{ route('fetch-rss-data') }}" class="button-link">Fetch RSS Data</a>
                 <h2>Your feeds:</h2>
                 <p>Here wil be the user subcriptions</p>
             </div>

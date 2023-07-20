@@ -25,19 +25,35 @@ class RssController extends Controller
     }
 
     // Data fetching
-    public function fetchRssData(){
-        $rssUrls = RssSubscription::pluck('url');
-        $rssData = [];
+    public function fetchRssDataFromUrl($url){
+        
+        $feed = new SimplePie();
+        $feed->set_feed_url($url);
+        $feed->init();
+        
+        // Checking
+        if (!$feed->error()) {
+            // Extracting
+            $title = $feed->get_title();
+            $items = $feed->get_items();
 
-        foreach ($rssUrls as $url) {
-            $feed = new SimplePie();
-            $feed->set_feed_url($url);
-            $feed->enable_cache(false);
-            $feed->init();
-            $rssData[] = $feed->get_items();
+            // Array to store extracted data:
+            $parseData = [
+                'title' => $title,
+                'items' => [],
+            ];
         }
 
-        return view('rss-data', compact('rssData'));
+        // Extract required data 
+        foreach ($items as $item) {
+            $parseData['items'][] = [
+                'title' => $item->get_title(),
+                'link'  => $item->get_link(), 
+                // Relevant fields can be added here later
+            ];   
+        }
+        
+        return $parseData;
     }
 
 }
