@@ -20,10 +20,9 @@ Route::get('/', [UserController::class, 'showCorrectHomePage']);
 
 // UserController
 Route::get('/register', [Home::class, 'registrationpage']);
-Route::post('/registration', [UserController::class, 'registration']);
-Route::post('/login', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/registration', [UserController::class, 'registration'])->middleware('guest');
+Route::post('/login', [UserController::class, 'login'])->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 // RssController
-Route::middleware('auth')->post('/rsssubscription', [RssController::class, 'createSubscription']);
-Route::get('/fetch-rss-data', [RssController::class, 'fetchRssData']);
+Route::post('/rsssubscription', [RssController::class, 'createSubscription'])->middleware('auth');

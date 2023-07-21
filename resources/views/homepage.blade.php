@@ -4,8 +4,8 @@
     @endsection
 
     <div class="grid-container">
-        {{-- URL adding box--}}
         <div class="content-container" class="url-container">
+            {{-- URL adding box--}}
             <div id="addrss-container">
                 <h2>Add RSS feed</h2>
                 <form action="/rsssubscription" method="POST" id="url_submit_form">
@@ -20,13 +20,24 @@
                     <button class="button-link" type="submit">Subscribe</button>
                 </form>
             </div>
-            <div class="user-feeds-container">
-                <a href="{{ route('fetch-rss-data') }}" class="button-link">Fetch RSS Data</a>
-                <h2>Your feeds:</h2>
-                <p>Here wil be the user subcriptions</p>
+            {{-- Subscriptions  --}}
+            <div class="subscription-container">
+                <h2>Your Subscriptions:</h2>
+                @if (auth()->check())
+                    @if (auth()->user()->subscriptions->isEmpty())
+                        <p>No RSS subscriptions yet.</p>
+                    @else
+                    <ul>
+                        @foreach (auth()->user()->subscriptions as $subscription)
+                        <li> {{ $subscription->url }}  </li>
+                        @endforeach
+                    </ul>
+                    @endif
+                @else
+                    <p>Please log in to see your subscriptions.</p>
+                @endif
             </div>
-        </div>
-
+        </div> 
 
         {{-- Actual RSS --}}
         <div class="content-container" id="rss">
