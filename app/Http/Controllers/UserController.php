@@ -14,11 +14,7 @@ class UserController extends Controller
         if (auth()->check()) {
             $subscriptions = auth()->user()->subscriptions()->get();
             
-            
-            
-            
             return view('homepage', compact('subscriptions'));
-        
         
         // Rendering the welcome page
         } else {

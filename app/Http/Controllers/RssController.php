@@ -24,7 +24,7 @@ class RssController extends Controller
         return redirect('/')->with('success', 'RSS Subscription added');
     }
 
-    // Fetch XML Data from URLs:
+    // Fetch XML data from URLs:
     public function fetchRssDataFromUrl($url){
         try {
             $response = Http::get($url);
@@ -37,9 +37,18 @@ class RssController extends Controller
         }
     }
 
+    //  Parse XML data and extract info
+    public function showSubscriptions() {
+        $subscriptions = auth()->user()->subscriptions;
+        foreach ($subscriptions as $subscription) {
+            $subscription->xmlData = $this->fetchRssDataFromUrl($subscription->url);
+        }
+
+        return view('components.subscriptions', ['subscriptions' => $subscriptions]);
+    }
 
 
-    
+
 }
 
 
