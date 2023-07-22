@@ -1,4 +1,3 @@
-
 <form action="/rsssubscription" method="POST" id="url_submit_form">
     @csrf
     <div class="form-group">

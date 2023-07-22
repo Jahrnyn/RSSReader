@@ -42,9 +42,13 @@ class RssController extends Controller
         $subscriptions = auth()->user()->subscriptions;
         foreach ($subscriptions as $subscription) {
             $subscription->xmlData = $this->fetchRssDataFromUrl($subscription->url);
+
+            if ($subscription->xmlData === null) {
+                $subscription->xmlData = (object) ['error' => 'Error fetching XML data'];
+            }
         }
 
-        return view('components.subscriptions', ['subscriptions' => $subscriptions]);
+        return view('components.subscriptions', compact('subscriptions'));
     }
 
 

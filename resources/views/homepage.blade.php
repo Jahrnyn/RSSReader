@@ -13,7 +13,7 @@
             {{-- Subscriptions  --}}
             <div class="subscription-container">
                 <h2>Your Subscriptions:</h2>
-                <x-subscriptions />
+                <x-subscriptions :subscriptions="$subscriptions" />
             </div>
         </div> 
 

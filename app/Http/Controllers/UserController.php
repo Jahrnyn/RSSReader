@@ -5,22 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\RssController;
 
 class UserController extends Controller
 {
     // Welcome / Logged in page:
-    public function showCorrectHomePage() {
-        // Returning the homepage with the user subscriptions
+    public function showCorrectHomePage()
+    {
         if (auth()->check()) {
-            $subscriptions = auth()->user()->subscriptions()->get();
-            
+            $subscriptions = auth()->user()->subscriptions;
             return view('homepage', compact('subscriptions'));
-        
-        // Rendering the welcome page
         } else {
             return view('welcome');
         }
     }
+    
     
     // logout
     public function logout() {

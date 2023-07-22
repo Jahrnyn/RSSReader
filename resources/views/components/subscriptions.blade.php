@@ -1,28 +1,19 @@
-
-
-
-
-
 @if (auth()->check())
     @if (auth()->user()->subscriptions->isEmpty())
         <p>No RSS subscriptions yet.</p>
-    
-        @else
+    @else
         <ul>
             @foreach ($subscriptions as $subscription)
-            @if ($subscription->xmlData && $subscription->xmlData->channel)
-                    <li>
-                        <h3>{{ $subscription->xmlData->channel ? $subscription->xmlData->channel->title : 'No title available' }}</h3>
-                        
-                    </li>
-                @else
-                    <li>
+                <li>
+                    @if (isset($subscription->xmlData) && isset($subscription->xmlData->channel))
+                        <h3>{{ $subscription->xmlData->channel->title ?? 'No title available' }}</h3>
+                    @else
                         <h3>Error fetching XML data for: {{ $subscription->url }}</h3>
-                    </li>
-                @endif
+                    @endif
+                </li>
             @endforeach
         </ul>
-        @endif
-    @else
-        <p>Please log in to see your subscriptions.</p>
     @endif
+@else
+    <p>Please log in to see your subscriptions.</p>
+@endif
