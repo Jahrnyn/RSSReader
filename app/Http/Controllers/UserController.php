@@ -10,9 +10,17 @@ class UserController extends Controller
 {
     // Welcome / Logged in page:
     public function showCorrectHomePage() {
+        // Returning the homepage with the user subscriptions
         if (auth()->check()) {
-            $subscriptions = auth()->user()->subscriptions;
+            $subscriptions = auth()->user()->subscriptions()->get();
+            
+            
+            
+            
             return view('homepage', compact('subscriptions'));
+        
+        
+        // Rendering the welcome page
         } else {
             return view('welcome');
         }

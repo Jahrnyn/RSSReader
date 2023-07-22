@@ -8,34 +8,12 @@
             {{-- URL adding box--}}
             <div id="addrss-container">
                 <h2>Add RSS feed</h2>
-                <form action="/rsssubscription" method="POST" id="url_submit_form">
-                    @csrf
-                    <div class="form-group">
-                        <label for="url">Paste your url below and click to Submit!</label>
-                        <input type="text" id="url" name="url" placeholder="Place the url here" required>
-                            @error('url')
-                                <p>{{ $message }}</p>
-                            @enderror
-                    </div>
-                    <button class="button-link" type="submit">Subscribe</button>
-                </form>
+                <x-subscription_submit_form />
             </div>
             {{-- Subscriptions  --}}
             <div class="subscription-container">
                 <h2>Your Subscriptions:</h2>
-                @if (auth()->check())
-                    @if (auth()->user()->subscriptions->isEmpty())
-                        <p>No RSS subscriptions yet.</p>
-                    @else
-                    <ul>
-                        @foreach (auth()->user()->subscriptions as $subscription)
-                        <li> {{ $subscription->url }}  </li>
-                        @endforeach
-                    </ul>
-                    @endif
-                @else
-                    <p>Please log in to see your subscriptions.</p>
-                @endif
+                <x-subscriptions />
             </div>
         </div> 
 

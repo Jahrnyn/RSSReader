@@ -21,9 +21,6 @@ class CreateRssSubscriptionsTable extends Migration
 
             // Add foreign key constraint to link user_id to users table
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
-            // Make 'url' column unique to avoid duplicate subscriptions
-            $table->unique('url');
         });
     }
 

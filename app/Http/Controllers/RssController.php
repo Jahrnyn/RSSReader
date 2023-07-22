@@ -14,7 +14,7 @@ class RssController extends Controller
     // create subscription
     public function createSubscription(Request $request){
         $request->validate([
-            'url' => ['required', Rule::unique('rss_subscriptions', 'url')]
+            'url' => 'required',
         ]);
 
         $subscription = new RssSubscription();
