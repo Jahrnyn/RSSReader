@@ -28,13 +28,18 @@ class RssController extends Controller
     public function fetchRssDataFromUrl($url){
         try {
             $response = Http::get($url);
-
-
+            $xmlString = $response->body();
+            $xml = simplexml_load_string($xmlString, null, LIBXML_NOCDATA);
+            return $xml;
             
         } catch (\Exception $e) {
             return null;
         }
     }
+
+
+
+    
 }
 
 
