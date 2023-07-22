@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use SimplePie\SimplePie;
 use Illuminate\Http\Request;
 use App\Models\RssSubscription;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Http;
 
 
 
@@ -25,4 +24,17 @@ class RssController extends Controller
         return redirect('/')->with('success', 'RSS Subscription added');
     }
 
+    // Fetch XML Data from URLs:
+    public function fetchRssDataFromUrl($url){
+        try {
+            $response = Http::get($url);
+
+
+            
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 }
+
+
