@@ -5,10 +5,10 @@
         <ul>
             @foreach ($subscriptions as $subscription)
                 <li>
-                    @if (isset($subscription->xmlData) && isset($subscription->xmlData->channel))
-                        <h3>{{ $subscription->xmlData->channel->title ?? 'No title available' }}</h3>
+                    @if ($subscription->title)
+                    <h3><a href="/user_subscription/{{ $subscription->id }}">{{ $subscription->title }}</a></h3>
                     @else
-                        <h3>Error fetching XML data for: {{ $subscription->url }}</h3>
+                        <h3>No title available</h3>
                     @endif
                 </li>
             @endforeach

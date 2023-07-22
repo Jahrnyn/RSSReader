@@ -13,7 +13,9 @@ class UserController extends Controller
     public function showCorrectHomePage()
     {
         if (auth()->check()) {
-            $subscriptions = auth()->user()->subscriptions;
+            $rssController = new RssController();
+            $subscriptions = $rssController->showSubscriptions();
+            
             return view('homepage', compact('subscriptions'));
         } else {
             return view('welcome');
