@@ -10,16 +10,16 @@
                 <h2>Add RSS feed</h2>
                 <x-subscription_submit_form />
             </div>
-            {{-- Subscriptions  --}}
+            {{-- Subscriptions --}}
             <div class="subscription-container">
                 <h2>Your Subscriptions:</h2>
                 <x-subscriptions :subscriptions="$subscriptions" />
             </div>
         </div> 
 
-        {{-- Actual RSS --}}
+        {{-- RSS Feed Container --}}
         <div class="content-container" id="rss">
-            <p>Here will be the feed.</p>
+            <x-rss_feeds />
         </div>
     </div>
 </x-layout>

@@ -10,12 +10,26 @@ use App\Http\Controllers\RssController;
 class UserController extends Controller
 {
     // Welcome / Logged in page:
-    public function showCorrectHomePage()
-    {
+    public function showCorrectHomePage(){
         if (auth()->check()) {
+            // Check if the user is viewing the RSS feed
+            if (request()->is('user_subscription/*')) {
+                // Get the ID from the URL
+                $id = explode('/', request()->path())[1];
+
+                // Call the showRssFeed method to get the subscription data
+                $rssController = new RssController();
+                $subscriptionData = $rssController->fetchRssDataAndExtractInfo($id);
+
+                // Return the rss_feeds.blade.php view with the subscriptionData
+                return view('rss_feeds', compact('subscriptionData'));
+            }
+
+            // Get the subscriptions
             $rssController = new RssController();
             $subscriptions = $rssController->showSubscriptions();
-            
+
+            // Pass subscriptions to the homepage view
             return view('homepage', compact('subscriptions'));
         } else {
             return view('welcome');

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 class RssController extends Controller
 {
     // create subscription
-    public function createSubscription(Request $request){
+    public function createSubscription(Request $request) {
         $request->validate([
             'url' => 'required',
         ]);
@@ -38,23 +38,22 @@ class RssController extends Controller
             return $xmlData;
         } catch (\Exception $e) {
             Log::error("cURL error: " . $e->getMessage());
-            Log::error("URL: " . $url);     // line to log the URL causing the error
+            Log::error("URL: " . $url);   
             return null;
         }
     }
 
     //  Parse XML data and extract info
-    public function showSubscriptions()
-    {
+    public function showSubscriptions(){
         $subscriptions = auth()->user()->subscriptions;
     
-        foreach ($subscriptions as $subscription) {
-            $xmlData = $this->fetchRssDataFromUrl($subscription->url);
+        foreach ($subscriptions as $subscription) { 
+            // Fetch XML data from the urls
+            $subscriptionData = $this->fetchRssDataAndExtractInfo($subscription->url);
     
-            if ($xmlData) {
+            if ($subscriptionData) {
                 // Extract relevant information from the XML data and store it in the object
-                $subscription->title = $xmlData->channel ? $xmlData->channel->title : 'No title available';
-                // Add more information extraction as needed
+                $subscription->title = $subscriptionData['title'];
             } else {
                 // Handle the case when XML data cannot be fetched
                 $subscription->title = 'Error fetching XML data for: ' . $subscription->url;
@@ -64,6 +63,41 @@ class RssController extends Controller
         return $subscriptions; // Return the collection with the objects properly populated
     }
 
+    // Fetch XML data from the URL and extract relevant information
+    private function fetchRssDataAndExtractInfo($url){
+        $xmlData = $this->fetchRssDataFromUrl($url);
+
+        if ($xmlData) {
+            // Extract relevant information from the XML data and return it
+            $title = $xmlData->channel ? $xmlData->channel->title : 'No title available';
+            // Add more data extraction here as needed
+            return [
+                'title' => $title,
+                // placeholder
+            ];
+        } else {
+            // Handle the case when XML data cannot be fetched
+            Log::error("Error fetching XML data for: " . $url);
+            return null;
+        }
+    }
+
+
+    public function showRssFeed($id)
+    {
+        $selectedSubscription = RssSubscription::findOrFail($id);
+
+        // Fetch and extract data for the selected subscription
+        $subscriptionData = $this->fetchRssDataAndExtractInfo($selectedSubscription->url);
+
+        if ($subscriptionData) {
+            // Pass the subscription data to the view
+            return view('components.rss_feeds', ['subscriptionData' => $subscriptionData]);
+        } else {
+            // Handle the case when data cannot be fetched
+            return redirect('/')->with('error', 'Error fetching RSS data');
+        }
+    }
 
 }
 
