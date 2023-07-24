@@ -48,30 +48,26 @@ class RssController extends Controller
         $subscriptions = auth()->user()->subscriptions;
     
         foreach ($subscriptions as $subscription) { 
-            // Fetch XML data from the urls
             $subscriptionData = $this->fetchRssDataAndExtractInfo($subscription->url);
     
             if ($subscriptionData) {
-                // Extract relevant information from the XML data and store it in the object
-                $subscription->title = $subscriptionData['title'];
+                $subscription->title = $subscriptionData['title']; // Extract relevant information from the XML 
             } else {
-                // Handle the case when XML data cannot be fetched
-                $subscription->title = 'Error fetching XML data for: ' . $subscription->url;
+                $subscription->title = 'Error fetching XML data for: ' . $subscription->url; // Handle the case when XML data cannot be fetched
             }
         }
-    
-        return $subscriptions; // Return the collection with the objects properly populated
+        return $subscriptions; 
     }
 
-    // Fetch XML data from the URL and extract relevant information
+    // Fetch XML data from the url and extract relevant information
     private function fetchRssDataAndExtractInfo($url){
         $xmlData = $this->fetchRssDataFromUrl($url);
 
         if ($xmlData) {
-            // Extract the title from the channel to use it for the user subscriptions
+            // Title
             $title = $xmlData->channel ? $xmlData->channel->title : 'No title available';
 
-            // Extract relevant information from the XML data and return it
+            // Extract info from the xml
             $items = $xmlData->channel->item;
             $results = [];
 
@@ -90,14 +86,12 @@ class RssController extends Controller
                 ];
             }
 
-            // Return data
             return [
                 'title' => $title,
                 'items' => $results,
             ];
         } else {
-            // Handle the case when XML data cannot be fetched
-            Log::error("Error fetching XML data for: " . $url);
+            Log::error("Error fetching XML data for: " . $url); // Handle the case when XML data cannot be fetched
             return null;
         }
     }
