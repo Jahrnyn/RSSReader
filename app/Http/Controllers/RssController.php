@@ -104,25 +104,26 @@ class RssController extends Controller
     public function showRssFeed($id) {
         // Geting the url from id
         $subscription = RssSubscription::find($id);
-            if (!$subscription) {
-                return redirect('/')->with('error', 'Subscription not found.');
-            }
+        if (!$subscription) {
+            return redirect('/')->with('error', 'Subscription not found.');
+        }
+    
         $url = $subscription->url;
-
+    
         // Calling the fetchRssDataAndExtractInfo method
         $rssController = new RssController();
         $rssData = $rssController->fetchRssDataAndExtractInfo($url);
-        
-        // for channel title -> $rssData['title']
-        // array of item data -> $rssData['items']
+    
+        // Convert the SimpleXMLElement to an associative array
+        $rssDataArray = json_decode(json_encode($rssData), true);
 
-        
-        return view('components.rss_feeds', ['rssData' => $rssData]);
-        
+        // Save the fetched RSS feed data in the session
+        session(['rssData' => $rssDataArray]);
+    
+        // Redirect the user back to the homepage
+        return redirect('/');
     }
-
-
-
+    
 }
 
 

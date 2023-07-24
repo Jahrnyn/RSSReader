@@ -19,7 +19,11 @@
 
         {{-- RSS Feed Container --}}
         <div class="content-container" id="rss">
-            {{-- <x-rss_feeds :rssData="$rssData" /> --}}
+                @if (session()->has('rssData'))
+                <x-rss_feeds :rssData="session('rssData')" />
+            @else
+                <h3>No RSS data available. Please choose a subscription.</h3>
+            @endif
         </div>
     </div>
 </x-layout>
