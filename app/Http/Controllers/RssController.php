@@ -79,12 +79,14 @@ class RssController extends Controller
                 $itemTitle = $item->title;
                 $itemDescription = $item->description;
                 $itemPubDate = $item->pubDate;
+                $itemLink = $item->link;
             
                 // Store the extracted data
                 $results[] = [
                     'itemTitle' => $itemTitle,
                     'itemDescription' => $itemDescription,
                     'itemPubDate' => $itemPubDate,
+                    'itemLink' => $itemLink,
                 ];
             }
 

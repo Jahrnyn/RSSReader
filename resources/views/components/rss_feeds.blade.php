@@ -1,6 +1,6 @@
 {{-- rss_feeds.blade.php --}}
 @if ($rssData)
-    <h3>Selected Subscription Title: {{ $rssData['title'][0] }}</h3>
+    <h2>Selected Subscription: {{ $rssData['title'][0] }}</h2>
 
     @php
         $counter = 0;
@@ -11,8 +11,10 @@
             $itemTitle = is_array($item['itemTitle']) ? $item['itemTitle'][0] : $item['itemTitle'];
             $itemDescription = is_array($item['itemDescription']) ? $item['itemDescription'][0] : $item['itemDescription'];
             $itemPubDate = is_array($item['itemPubDate']) ? $item['itemPubDate'][0] : $item['itemPubDate'];
+            $itemLink = is_array($item['itemLink']) ? $item['itemLink'][0] : $item['itemLink']; 
         @endphp
 
+        {{-- Title --}}
         <h3>{{ $itemTitle }}</h3>
 
         {{-- Handle 'itemDescription' --}}
@@ -22,7 +24,14 @@
             <p>{!! htmlspecialchars_decode($itemDescription) !!}</p>
         @endif
 
+        {{-- Dates --}}
         <p>{{ $itemPubDate }}</p>
+
+        
+        {{-- links --}}
+        @if ($itemLink)
+            <p>Link: <a href="{{ $itemLink }}" target="_blank">{{ $itemLink }}</a></p>
+        @endif
 
         {{-- displaying only 8 feeds in the view --}}
         @php

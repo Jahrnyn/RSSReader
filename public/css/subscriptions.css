@@ -1,0 +1,52 @@
+.subscription_list {
+    list-style: none;
+    padding: 0;
+}
+
+.subscription_list li {
+    margin-bottom: 10px; /
+}
+
+.subscription_links_container {
+    display: flex; 
+    align-items: center; 
+}
+
+.add_subscription_button {
+    flex: 1; 
+    padding: 10px 20px;
+    background-color: grey; 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.add_subscription_button:hover {
+    background-color: #FF3366; 
+}
+
+.del_subscription_button_container {
+    flex: 0; 
+    margin-left: 10px; 
+}
+
+.del_subscription_button {
+    padding: 10px;
+    background-color: grey; 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center; 
+}
+
+.del_subscription_button:hover {
+    background-color: #FF3366; 
+    cursor: pointer;
+}
+
+.del_subscription_button_container:hover + .add_subscription_button {
+    background-color: #FF3366;
+}
