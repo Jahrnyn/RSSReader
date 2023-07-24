@@ -2,6 +2,7 @@
     @section('styles')
         <link rel="stylesheet" href="css/homepage.css">
         <link rel="stylesheet" href="css/subscriptions.css">
+        <link rel="stylesheet" href="css/rssfeeds.css">
     @endsection
 
     <div class="grid-container">

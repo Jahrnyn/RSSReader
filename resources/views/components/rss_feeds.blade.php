@@ -1,4 +1,3 @@
-{{-- rss_feeds.blade.php --}}
 @if ($rssData)
     <h2>Selected Subscription: {{ $rssData['title'][0] }}</h2>
 
@@ -14,24 +13,26 @@
             $itemLink = is_array($item['itemLink']) ? $item['itemLink'][0] : $item['itemLink']; 
         @endphp
 
-        {{-- Title --}}
-        <h3>{{ $itemTitle }}</h3>
+        <div class="rss-feed-description_container">
+            {{-- Title --}}
+            <h3>{{ $itemTitle }}</h3>
 
-        {{-- Handle 'itemDescription' --}}
-        @if (is_array($itemDescription))
-            <pre>{{ print_r($itemDescription, true) }}</pre>
-        @else
-            <p>{!! htmlspecialchars_decode($itemDescription) !!}</p>
-        @endif
+            {{-- Handle 'itemDescription' --}}
+            @if (is_array($itemDescription))
+                <pre>{{ print_r($itemDescription, true) }}</pre>
+            @else
+                <p>{!! htmlspecialchars_decode($itemDescription) !!}</p>
+            @endif
 
-        {{-- Dates --}}
-        <p>{{ $itemPubDate }}</p>
+            {{-- Dates --}}
+            <p>{{ $itemPubDate }}</p>
 
-        
-        {{-- links --}}
-        @if ($itemLink)
-            <p>Link: <a href="{{ $itemLink }}" target="_blank">{{ $itemLink }}</a></p>
-        @endif
+            
+            {{-- links --}}
+            @if ($itemLink)
+                <p>Link: <a href="{{ $itemLink }}" target="_blank">{{ $itemLink }}</a></p>
+            @endif
+        </div>
 
         {{-- displaying only 8 feeds in the view --}}
         @php
