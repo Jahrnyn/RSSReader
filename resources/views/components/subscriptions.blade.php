@@ -5,11 +5,14 @@
         <ul>
             @foreach ($subscriptions as $subscription)
                 <li>
-                    @if ($subscription->title)
-                    <h3><a href="/user_subscription/{{ $subscription->id }}" class="subscription-link">{{ $subscription->title }}</a></h3>
-                    @else
-                        <h3>No title available</h3>
-                    @endif
+                    <h3>
+                        <a href="/user_subscription/{{ $subscription->id }}" class="subscription-link">{{ $subscription->title ?? 'No title available' }}</a>
+                        <a href="/delete_subscription/{{ $subscription->id }}" class="delete-link" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $subscription->id }}').submit();">X</a>
+                    </h3>
+                    <form id="delete-form-{{ $subscription->id }}" action="/delete_subscription/{{ $subscription->id }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </li>
             @endforeach
         </ul>

@@ -109,20 +109,27 @@ class RssController extends Controller
         }
     
         $url = $subscription->url;
-    
-        // Calling the fetchRssDataAndExtractInfo method
+
         $rssController = new RssController();
         $rssData = $rssController->fetchRssDataAndExtractInfo($url);
     
-        // Convert the SimpleXMLElement to an associative array
+        // Convert SimpleXMLElement to an array
         $rssDataArray = json_decode(json_encode($rssData), true);
 
-        // Save the fetched RSS feed data in the session
+        // Save RSS data into the session
         session(['rssData' => $rssDataArray]);
-    
-        // Redirect the user back to the homepage
         return redirect('/');
     }
+
+    public function destroySubscription(RssSubscription $subscription) {
+        if (auth()->user()->id !== $subscription->user_id) {
+            abort(403); // Unauthorized
+        }
+        $subscription->delete();
+
+        return redirect('/')->with('success', 'Subscription deleted successfully.');
+    }
+
     
 }
 
