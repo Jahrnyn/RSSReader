@@ -1,3 +1,62 @@
+<h1>RSS Reader App</h1>
+
+<b>Project Description:</b> This project is a web application that allows users to subscribe to and read RSS feeds from various sources. Users can manage their subscriptions, view the latest articles from their subscribed feeds, and explore new feeds to add to their collection.
+
+<h2>Features</h2>
+<ul>
+    <li>User Authentication: Users can sign up and log in to the application.</li>
+    <li>Subscription Management: Users can add, edit, and delete their RSS subscriptions.</li>
+    <li>RSS Feed Reader: Users can view the latest articles from their subscribed feeds on the homepage.</li>
+    <li>Explore Feeds: Users can discover new feeds and add them to their subscriptions.</li>
+    <li>RSS Parsing: The application uses XML parsing to extract relevant information from RSS feeds.</li>
+    <li>Stylish UI: The user interface is designed to be visually appealing and user-friendly.</li>
+</ul>
+<h2>Technologies Used</h2>
+<ul>
+    <li>Laravel: The backend of the application is built using the Laravel framework.</li>
+    <li>MySQL: The database system used to store user data and subscriptions.</li>
+    <li>Blade Templating Engine: Used for creating the frontend views.</li>
+    <li>GuzzleHTTP: Used to fetch XML data from RSS feeds.</li>
+    <li>HTML, CSS, JavaScript: Frontend technologies used for the user interface.</li>
+</ul>
+<h2>Installation</h2>
+<ol>
+    <li>Clone the repository.</li>
+    <li>Install dependencies using <code>composer install</code>.</li>
+    <li>Set up your environment variables, including database credentials and APP_KEY.</li>
+    <li>Migrate the database using <code>php artisan migrate</code>.</li>
+    <li>Start the development server with <code>php artisan serve</code>.</li>
+</ol>
+<h2>Usage</h2>
+<ol>
+    <li>Open the application in your web browser.</li>
+    <li>If you don't have an account, sign up for a new account.</li>
+    <li>Log in with your credentials.</li>
+    <li>In the homepage you can manage your RSS subscriptions.</li>
+    <li>Explore new feeds and add them to your subscriptions.</li>
+    <li>View the latest articles from your subscribed feeds on the homepage.</li>
+</ol>
+<h2>Contributing</h2>
+<p>Contributions to this project are welcome. To contribute, follow these steps:</p>
+<ol>
+    <li>Fork the repository.</li>
+    <li>Create a new branch for your feature/bug fix.</li>
+    <li>Make your changes and commit them.</li>
+    <li>Push your changes to your forked repository.</li>
+    <li>Submit a pull request to the main repository.</li>
+</ol>
+<h2>License</h2>
+<h2>Acknowledgements</h2>
+<ul>
+    <li><a href="https://laravel.com">Laravel</a>: For the powerful and elegant PHP framework used in this project.</li>
+</ul>
+<h2>Contact</h2>
+<p>If you have any questions, suggestions, or feedback, please feel free to contact us at <a href="mailto:cziljak.zoltan.andras@gmail.com">cziljak.zoltan.andras@gmail.com</a>.</p>
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
