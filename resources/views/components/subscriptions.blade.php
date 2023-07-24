@@ -6,7 +6,7 @@
             @foreach ($subscriptions as $subscription)
                 <li>
                     @if ($subscription->title)
-                    <h3><a href="/user_subscription/{{ $subscription->id }}">{{ $subscription->title }}</a></h3>
+                    <h3><a href="/user_subscription/{{ $subscription->id }}" class="subscription-link">{{ $subscription->title }}</a></h3>
                     @else
                         <h3>No title available</h3>
                     @endif

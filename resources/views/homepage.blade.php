@@ -19,7 +19,7 @@
 
         {{-- RSS Feed Container --}}
         <div class="content-container" id="rss">
-            <x-rss_feeds />
+            {{-- <x-rss_feeds :rssData="$rssData" /> --}}
         </div>
     </div>
 </x-layout>

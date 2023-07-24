@@ -68,12 +68,30 @@ class RssController extends Controller
         $xmlData = $this->fetchRssDataFromUrl($url);
 
         if ($xmlData) {
-            // Extract relevant information from the XML data and return it
+            // Extract the title from the channel to use it for the user subscriptions
             $title = $xmlData->channel ? $xmlData->channel->title : 'No title available';
-            // Add more data extraction here as needed
+
+            // Extract relevant information from the XML data and return it
+            $items = $xmlData->channel->item;
+            $results = [];
+
+            foreach ($items as $item) {
+                $itemTitle = $item->title;
+                $itemDescription = $item->description;
+                $itemPubDate = $item->pubDate;
+            
+                // Store the extracted data
+                $results[] = [
+                    'itemTitle' => $itemTitle,
+                    'itemDescription' => $itemDescription,
+                    'itemPubDate' => $itemPubDate,
+                ];
+            }
+
+            // Return data
             return [
                 'title' => $title,
-                // placeholder
+                'items' => $results,
             ];
         } else {
             // Handle the case when XML data cannot be fetched
@@ -83,21 +101,27 @@ class RssController extends Controller
     }
 
 
-    public function showRssFeed($id)
-    {
-        $selectedSubscription = RssSubscription::findOrFail($id);
+    public function showRssFeed($id) {
+        // Geting the url from id
+        $subscription = RssSubscription::find($id);
+            if (!$subscription) {
+                return redirect('/')->with('error', 'Subscription not found.');
+            }
+        $url = $subscription->url;
 
-        // Fetch and extract data for the selected subscription
-        $subscriptionData = $this->fetchRssDataAndExtractInfo($selectedSubscription->url);
+        // Calling the fetchRssDataAndExtractInfo method
+        $rssController = new RssController();
+        $rssData = $rssController->fetchRssDataAndExtractInfo($url);
+        
+        // for channel title -> $rssData['title']
+        // array of item data -> $rssData['items']
 
-        if ($subscriptionData) {
-            // Pass the subscription data to the view
-            return view('components.rss_feeds', ['subscriptionData' => $subscriptionData]);
-        } else {
-            // Handle the case when data cannot be fetched
-            return redirect('/')->with('error', 'Error fetching RSS data');
-        }
+        
+        return view('components.rss_feeds', ['rssData' => $rssData]);
+        
     }
+
+
 
 }
 
